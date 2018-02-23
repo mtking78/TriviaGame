@@ -13,7 +13,7 @@ $(document).ready(function(){
 
 
     // Countdown function for each question
-    var time = 60;
+    var time = 15;
     var intervalId;
 
     function countDown() {
@@ -38,7 +38,7 @@ $(document).ready(function(){
         clearInterval(intervalId);
         questionIndex++;
         loadQuestion();
-        time = 5;
+        time = 15;
         countDown();
     }
 
@@ -82,19 +82,10 @@ $(document).ready(function(){
             $("#choice4").html(questionsArray[questionIndex][1][3]);
         } else {
             $("#question").html("Game Over");
-            $("#score").html("Final score: " + score + " out of " + questionsArray.length)
+            $("#score").html("Final score: " + score + " out of " + questionsArray.length);
+            // stop the clock?!?
         }
     }
-
-    // function checkAnswer () {
-    //     var userInput = ???
-
-    //     if (userInput === "#btn1" || userInput === "#btn2" || userInput === "#btn3" || userInput === "#btn4") {
-    //         if (userInput === questionsArray[questionIndex][2]) {
-    //             alert("Correct!");
-    //         }
-    //     }
-    // }
 
     function updateScore () {
         $("#score").html(score + " of " + questionsArray.length);
@@ -111,6 +102,21 @@ $(document).ready(function(){
     //         questionIndex++;
     //     }
     // }
+    $("button").click(function() {
+        // definitely didn't make this line by myself
+        var data = $.parseJSON($(this).attr('data-choice'));
+        if (data == questionsArray[questionIndex][2]) {
+            alert("yes");
+            score++;
+            updateScore();
+        } else {
+            alert("no");
+        }
+        questionIndex++;
+        loadQuestion();
+        time = 15;
+        countDown();
+      });
     // checkAnswer();
 });
     // when option is chosen
