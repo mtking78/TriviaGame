@@ -1,3 +1,5 @@
+var score = 0;
+
 $(document).ready(function(){
     $(".game-screen").hide();
 
@@ -7,6 +9,7 @@ $(document).ready(function(){
         // display the question, choices, and timer
         $(".game-screen").show();
         loadQuestion();
+        updateScore();
         countDown();
     });
 
@@ -23,7 +26,6 @@ $(document).ready(function(){
         time--;
         $("#timer").html("<h2>" + time + "</h2>");
         if (time === 0) {
-            alert("Time's up");
             timesUp();
             // show correct answer
             // update score
@@ -33,7 +35,10 @@ $(document).ready(function(){
     }
 
     function timesUp() {
+        $("#timer").html("<h2>" + "Time's Up!" + "</h2>");
+        //alert("The correct answer was " + questions[i].answer);
         clearInterval(intervalId);
+        //loadQuestion();
     }
 
     // after startQuiz is pressed:
@@ -84,6 +89,9 @@ $(document).ready(function(){
         }
     }
 
+    function updateScore () {
+        $("#score").html(score + " of " + questions.length);
+    }
 });
     // when option is chosen
         // check option
