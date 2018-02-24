@@ -12,6 +12,7 @@ $(document).ready(function(){
         loadQuestion();
         updateScore();
         countDown();
+        gameOver = false;
     });
 
     // Countdown function for each question
@@ -45,7 +46,7 @@ $(document).ready(function(){
              q3: ["Who is the most worthless player?", ["Rich Gedman", "Rafael Santana", "Tommy Herr", "Tom Brookens"], "1"],
              q4: ["Why should you play this game?", ["homerun derby", "it's the American pasttime", "to procrastinate", "you shouldn't"], "0"],
              q5: ["When should you take out Willie Randolph?", ["are you nuts?", "oh, give him one at-bat", "A.S.A.P.", "after he makes a fool of himself"], "1"],
-             q6: ["What does every batter do after an out", ["cry", "disappear", "walk off", "nothing"], "0"],
+             q6: ["What does every batter do after an out?", ["cry", "disappear", "walk off", "nothing"], "0"],
              q7: ["What team does Spilman play for?", ["the Mets", "the Red Sox", "the Giants", "the Twins"], "2"],
              q8: ["Can pitchers hit homeruns?", ["it's a mystery", "only in-the-park", "nope", "yes, through the wall only"], "3"],
              q9: ["What is Jones' first name?", ["Ruppert", "Doyle", "Mookie", "Wally"], "0"],
@@ -69,6 +70,7 @@ $(document).ready(function(){
             $("#question").html("Game Over");
             $("#score").html("<h2>" + "Final score: " + score + " out of " + questionsArray.length + "</h2>");
             $("#timer").html("<h2>" + "Game Over" + "</h2>");
+            $("#timer").hide();
         }
     }
 
@@ -80,18 +82,20 @@ $(document).ready(function(){
         // definitely didn't make this line by myself
         var data = $.parseJSON($(this).attr('data-choice'));
         if (data == questionsArray[questionIndex][2]) {
-            // verify correct answer
-            //alert("yes");
+            alert("Correct!");
+            //$("#message").html("Correct!");
+            // verify EXACT correct answer;
             score++;
             updateScore();
         } else {
-            // show correct answer
-            //alert("no");
+            alert("Incorrect!");
+            //$("#message").html("Incorrect!");
+            // show EXACT correct answer
         }
         // Move on to next question with reset timer
         questionIndex++;
-        setTimeout(loadQuestion, 3000);
-        //loadQuestion();
+        // setTimeout(loadQuestion, 3000);
+        loadQuestion();
         time = 15;
         setTimeout(countDown, 3000);
         //countDown();

@@ -4,16 +4,18 @@
 
 body {
     background: black;
+    font-family: 'Press Start 2P', cursive;
 }
 
 .bg1 {
   background-image: url(../images/RBI_logo.jpg);
-  min-width: 100%;
+  max-width: 100%;
+  background-size: cover;
   background-repeat: no-repeat;
 }
 
 .bg2 {
-  background-image: url(../images/RBI_play.JPG);
+  background-image: url(../images/RBI_play.jpg);
   max-width: 100%;
   background-size: cover;
   background-position-y: center;
@@ -25,24 +27,15 @@ body {
     border: none;
 }
 
+.question, .panel, .panel-heading {
+    background: black;
+    color: #fff;
+    text-align: center;
+    border: 2px solid #fff;
+}
+
 .question {
-    background: black;
-    color: #fff;
-    text-align: center;
-    border: 2px solid #fff;
     margin-bottom: 10px;
-}
-
-.panel {
-    background: black;
-    color: #fff;
-    text-align: center;
-    border: 2px solid #fff;
-}
-
-.panel-heading {
-    background-color: #f4511e;
-    color: #fff;
 }
 
 .panel-body {
@@ -59,6 +52,8 @@ body {
     border: 2px solid #fff;
 }
 
-button:hover {
+/* button:hover {
+    background: #bbb;
+    color: black;
     box-shadow: 5px 0px 40px rgba(0,0,0,.8);
-}
+} */

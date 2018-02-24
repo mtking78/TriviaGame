@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <title>TriviaGame</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -12,7 +13,7 @@
 <body>
   <div class="container loading-screen">
     <div id="startQuiz">
-      <button type="button" class="btn btn-info btn-lg" id="startButton">Start to begin</button>
+      <button type="button" class="btn btn-info btn-lg" id="startButton">Press to begin</button>
     </div>
   </div>
   <div class="container game-screen">
@@ -31,7 +32,7 @@
         <div class="panel panel-default">
           <div class="panel-heading">Time Left</div>
           <div class="panel-body">
-            <span id="timer"></span>
+            <span id="timer"><h2>15</h2></span>
           </div>
         </div>
       </div>
@@ -48,9 +49,9 @@
     <div class="well">
       <div class="row">
         <div class="col-xs-4">
-          <button class="btn-lg btn-defaults" type="button" data-choice="0"><span id="choice1"></span></button>
+          <button class="btn-lg btn-default" type="button" data-choice="0"><span id="choice1"></span></button>
         </div>
-        <div class="col-xs-4">
+        <div class="col-xs-4 message-box">
           <span id="message"></span>
         </div>
         <div class="col-xs-4">
