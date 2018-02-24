@@ -1,0 +1,64 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: black;
+}
+
+.bg1 {
+  background-image: url(../images/RBI_logo.jpg);
+  min-width: 100%;
+  background-repeat: no-repeat;
+}
+
+.bg2 {
+  background-image: url(../images/RBI_play.JPG);
+  max-width: 100%;
+  background-size: cover;
+  background-position-y: center;
+  background-repeat: no-repeat;
+}
+
+.well {
+    background: none;
+    border: none;
+}
+
+.question {
+    background: black;
+    color: #fff;
+    text-align: center;
+    border: 2px solid #fff;
+    margin-bottom: 10px;
+}
+
+.panel {
+    background: black;
+    color: #fff;
+    text-align: center;
+    border: 2px solid #fff;
+}
+
+.panel-heading {
+    background-color: #f4511e;
+    color: #fff;
+}
+
+.panel-body {
+    font-size: 2em;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.btn-lg {
+    background: black;
+    color: #fff;
+    text-align: center;
+    width: 100%;
+    border: 2px solid #fff;
+}
+
+button:hover {
+    box-shadow: 5px 0px 40px rgba(0,0,0,.8);
+}

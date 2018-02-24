@@ -1,16 +1,18 @@
 $(document).ready(function(){
+    // Hide the questions/answers until "Start Game" is pressed.
     $(".game-screen").hide();
-
+    $("body").addClass('bg1');
+    // Load/Start quiz on button press
     $("#startButton").click(function(){
-        // hide the start button
+        // hide the "Start Game" button
         $(".loading-screen").hide();
-        // display the question, choices, and timer
+        $("body").removeClass('bg1').addClass('bg2');
+        // Display the question, choices, and timer
         $(".game-screen").show();
         loadQuestion();
         updateScore();
         countDown();
     });
-
 
     // Countdown function for each question
     var time = 15;
@@ -25,16 +27,11 @@ $(document).ready(function(){
         $("#timer").html("<h2>" + time + "</h2>");
         if (time === 0) {
             timesUp();
-            // show correct answer
-            // update score
-            //check if end of quiz
-            // display next question button or final score
         }
     }
-
     function timesUp() {
         $("#timer").html("<h2>" + "Time's Up!" + "</h2>");
-        //alert("The correct answer was " + questions[i].answer);
+        //$("#message").html("The correct answer was " + correctAnswer);
         clearInterval(intervalId);
         questionIndex++;
         loadQuestion();
@@ -42,97 +39,61 @@ $(document).ready(function(){
         countDown();
     }
 
-    // after startQuiz is pressed:
-        // load new question in div
-        // load options 1-4 in buttons
-        // begin timer
-
     var questions = {
-             q1: ["What color is an orange?", ["orange", "pink", "blue", "white"], "0"],
-             q2: ["Where does food go?", ["on your clothes", "in the trash", "in your mouth", "everywhere"], "3"],
-             q3: ["Who do you think you are?", ["a mistake", "who my mom thinks I am", "Chewbacca", "an impotent wizard"], "1"],
-             q4: ["Why do you have a tongue?", ["to be sassy", "to keep my mouth shut", "for my teeth to bite", "dirty reasons"], "0"],
-             q5: ["When will this quiz be over?", ["never", "just around the corner", "it is", "what's the rush?"], "1"]
+             q1: ["How many teams are in RBI Baseball?", ["10", "26", "8", "30"], "0"],
+             q2: ["Where should you aim your pitches?", ["down the middle", "in the dirt", "outside", "at the batter's head!"], "3"],
+             q3: ["Who is the most worthless player?", ["Rich Gedman", "Rafael Santana", "Tommy Herr", "Tom Brookens"], "1"],
+             q4: ["Why should you play this game?", ["homerun derby", "it's the American pasttime", "to procrastinate", "you shouldn't"], "0"],
+             q5: ["When should you take out Willie Randolph?", ["are you nuts?", "oh, give him one at-bat", "A.S.A.P.", "after he makes a fool of himself"], "1"],
+             q6: ["What does every batter do after an out", ["cry", "disappear", "walk off", "nothing"], "0"],
+             q7: ["What team does Spilman play for?", ["the Mets", "the Red Sox", "the Giants", "the Twins"], "2"],
+             q8: ["Can pitchers hit homeruns?", ["it's a mystery", "only in-the-park", "nope", "yes, through the wall only"], "3"],
+             q9: ["What is Jones' first name?", ["Ruppert", "Doyle", "Mookie", "Wally"], "0"],
+             q10: ["What makes players so adorable in this game?", ["the crying", "they're plump", "they only run when they cry", "they're hideous"], "1"]
         };
 
     var score = 0;
     var questionIndex = 0;
-    var questionsArray = [questions.q1, questions.q2, questions.q3, questions.q4, questions.q5];
+    var questionsArray = [questions.q1, questions.q2, questions.q3, questions.q4, questions.q5, questions.q6, questions.q7, questions.q8, questions.q9, questions.q10];
 
     function loadQuestion() {
 
-        // for (var i = 0; i < questions.length; i++) {
-
-        //         var currentQuestion = questions[i].question;
-        //         $("#question").html(currentQuestion);
-
-        //         var choices = questions[i].choices;
-        //         $("#choice1").html(choices[0]);
-        //         $("#choice2").html(choices[1]);
-        //         $("#choice3").html(choices[2]);
-        //         $("#choice4").html(choices[3]);
-        // }
-
         // using class example from true/false game
         if (questionIndex <= (questionsArray.length - 1)) {
-            $("#question").html(questionsArray[questionIndex][0]);
+            $("#question").html("<h2>" + questionsArray[questionIndex][0] + "</h2>");
             $("#choice1").html(questionsArray[questionIndex][1][0]);
             $("#choice2").html(questionsArray[questionIndex][1][1]);
             $("#choice3").html(questionsArray[questionIndex][1][2]);
             $("#choice4").html(questionsArray[questionIndex][1][3]);
         } else {
             $("#question").html("Game Over");
-            $("#score").html("Final score: " + score + " out of " + questionsArray.length);
-            // stop the clock?!?
+            $("#score").html("<h2>" + "Final score: " + score + " out of " + questionsArray.length + "</h2>");
+            $("#timer").html("<h2>" + "Game Over" + "</h2>");
         }
     }
 
     function updateScore () {
-        $("#score").html(score + " of " + questionsArray.length);
+        $("#score").html("<h2>" + score + " of " + questionsArray.length + "</h2>");
     }
 
-    // function checkAnswer() {
-    //     if (data-choice === questionsArray[questionIndex][2]) {
-    //         alert("works");
-    //         score++
-    //         questionIndex++
-    //     } else {
-    //         // alert incorrect answer
-    //         // show correct answer
-    //         questionIndex++;
-    //     }
-    // }
     $("button").click(function() {
         // definitely didn't make this line by myself
         var data = $.parseJSON($(this).attr('data-choice'));
         if (data == questionsArray[questionIndex][2]) {
-            alert("yes");
+            // verify correct answer
+            //alert("yes");
             score++;
             updateScore();
         } else {
-            alert("no");
+            // show correct answer
+            //alert("no");
         }
+        // Move on to next question with reset timer
         questionIndex++;
-        loadQuestion();
+        setTimeout(loadQuestion, 3000);
+        //loadQuestion();
         time = 15;
-        countDown();
+        setTimeout(countDown, 3000);
+        //countDown();
       });
-    // checkAnswer();
 });
-    // when option is chosen
-        // check option
-            // verify correct answer or display correct answer
-            // update score
-            // check if end of quiz
-            // display next question button or score
-
-    // when time runs out
-        // display correct answer
-        // update score
-        // check if end of quiz
-        // display next question button orscore
-
-    // next question function (same as line 11?)
-        // load question
-        // load options
-        // reset timer
